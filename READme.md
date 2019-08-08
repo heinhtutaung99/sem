@@ -6,4 +6,4 @@ License
 
 Release [![Releases](https://img.shields.io/github/release/heinhtutaung99/sem/all.svg?style=flat-square)](https://github.com/heinhtutaung99/sem/releases)
 
-
+Develop Build Status [![Build Status](https://travis-ci.org/heinhtutaung99/sem.svg?branch=develop)](https://travis-ci.org/heinhtutaung99/sem)
