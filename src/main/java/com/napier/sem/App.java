@@ -14,12 +14,15 @@ public class App
         a.connect();
 
         // Extract employee salary information
-        ArrayList<Employee> employees = a.getAllSalaries();
+        //ArrayList<Employee> employees = a.getAllSalaries();
+
+        //Extract population from different countires
+        a.getEmployee();
 
         // Test the size of the returned data - should be 240124
-        System.out.println(employees.size());
+        //System.out.println(employees.size());
 
-        a.printSalaries(employees);
+        //a.printSalaries(employees);
         // Disconnect from database
         a.disconnect();
     }
@@ -54,7 +57,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world","root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -88,7 +91,7 @@ public class App
             }
         }
     }
-    public Employee getEmployee(int ID)
+    public Employee getEmployee()
     {
         try
         {
@@ -96,9 +99,9 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
+                    "SELECT Population "
+                            + "FROM country ";
+                            //"WHERE emp_no = " + ID;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -106,9 +109,9 @@ public class App
             if (rset.next())
             {
                 Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
+                emp.Population = rset.getInt("Population");
+                //emp.Name = rset.getString("Name");
+                //emp.last_name = rset.getString("last_name");
                 return emp;
             }
             else
@@ -117,7 +120,7 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -126,13 +129,13 @@ public class App
         if (emp != null)
         {
             System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
+                    emp.Name + " "
+                            + emp.Population + " ");
+                            //+ emp.last_name + "\n"
+                            //+ emp.title + "\n"
+                            //+ "Salary:" + emp.salary + "\n"
+                            //+ emp.dept_name + "\n"
+                            //+ "Manager: " + emp.manager + "\n");
         }
     }
     /**

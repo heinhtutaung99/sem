@@ -5,6 +5,10 @@ package com.napier.sem;
  */
 public class Employee
 {
+    /*Population*/
+    public int Population;
+
+    public String Name;
     /**
      * Employee number
      */
